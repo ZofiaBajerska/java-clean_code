@@ -1,5 +1,5 @@
 public interface MessageDecorator {
 
-    public String toString();
+    public String getRecord();
 
 }
