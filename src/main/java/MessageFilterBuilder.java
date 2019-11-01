@@ -7,6 +7,13 @@ public class MessageFilterBuilder {
     private String text;
     private Date date;
 
+    public MessageFilterBuilder()
+    {
+        title = new String("");
+        author = new String("");
+        text = new String("");
+    }
+
     public MessageFilterBuilder withTitle (final String title) {
         this.title = title;
         return this;
@@ -31,7 +38,7 @@ public class MessageFilterBuilder {
         filter.setTitle(title);
         filter.setAuthor(author);
         filter.setText(text);
-        filter.setDate(date);
+//        filter.setDate(date);
         return filter;
     }
 }

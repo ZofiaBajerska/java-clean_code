@@ -42,6 +42,16 @@ public class Message implements Comparable {
         this.date = date;
     }
 
+    public boolean isComplete() {
+        if ((author == null) || (title == null) || (text == null) || (date == null)) {
+            return false;
+        }
+        if (author.equals("") || title.equals("") || text.equals("")){
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public int compareTo(@NotNull Object o) {
         Message message = (Message)o;
