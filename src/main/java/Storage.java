@@ -11,10 +11,18 @@ public final class Storage {
     }
 
     public void add(Message msg) {
+        if(msg ==null){
+            throw new NullPointerException();
+        }
         container.add(msg);
     }
 
-    public boolean remove (Message msg) {
+    public boolean remove(Message msg) {
         return container.remove(msg);
+    }
+
+    public List<Message> getAll() {
+        return List.copyOf(container);
+
     }
 }
