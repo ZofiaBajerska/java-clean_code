@@ -1,6 +1,9 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Date;
 
-public class Message {
+
+public class Message implements Comparable {
 
     private String title;
     private String author;
@@ -37,5 +40,27 @@ public class Message {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public int compareTo(@NotNull Object o) {
+        Message message = (Message)o;
+        int comp = title.compareTo(message.getTitle());
+        if ((comp != 0) &&(message.getTitle() != null)) {
+            return comp;
+        }
+        comp = author.compareTo(message.getAuthor());
+        if ((comp != 0) &&(message.getAuthor() != null)) {
+            return comp;
+        }
+        comp = text.compareTo(message.getText());
+        if ((comp != 0) &&(message.getText() != null)) {
+            return comp;
+        }
+        comp = date.compareTo(message.getDate());
+        if ((message.getDate() == null)){
+            return 0;
+        }
+        return comp;
     }
 }

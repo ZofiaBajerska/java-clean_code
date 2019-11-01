@@ -1,23 +1,29 @@
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MessageFilter {
 
-    private Message filter;
+    private Message pattern;
 
     public void setTitle(String title) {
-        filter.setTitle(title);
+        pattern.setTitle(title);
     }
 
     public void setAuthor(String author) {
-        filter.setAuthor(author);
+        pattern.setAuthor(author);
     }
 
     public void setText(String text) {
-        filter.setText(text);
+        pattern.setText(text);
     }
 
     public void setDate(Date date) {
-        filter.setDate(date);
+        pattern.setDate(date);
+    }
+
+    public List<Message> process(List<Message> originalList) {
+        return originalList.stream().filter(m -> m == pattern).collect(Collectors.toList());
     }
 
 }
