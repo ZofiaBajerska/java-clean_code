@@ -55,21 +55,27 @@ public class Message implements Comparable {
     @Override
     public int compareTo(@NotNull Object o) {
         Message message = (Message)o;
-        int comp = title.compareTo(message.getTitle());
-        if ((comp != 0) &&(message.getTitle() != null)) {
-            return comp;
+        int comp = 0;
+        if(message.getTitle() != null) {
+            comp = title.compareTo(message.getTitle());
+            if (comp != 0) {
+                return comp;
+            }
         }
-        comp = author.compareTo(message.getAuthor());
-        if ((comp != 0) &&(message.getAuthor() != null)) {
-            return comp;
+        if(message.getAuthor() != null) {
+            comp = author.compareTo(message.getAuthor());
+            if (comp != 0) {
+                return comp;
+            }
         }
-        comp = text.compareTo(message.getText());
-        if ((comp != 0) &&(message.getText() != null)) {
-            return comp;
+        if (message.getText() != null) {
+            comp = text.compareTo(message.getText());
+            if (comp != 0) {
+                return comp;
+            }
         }
-        comp = date.compareTo(message.getDate());
-        if ((message.getDate() == null)){
-            return 0;
+        if (message.getDate() != null) {
+            comp = date.compareTo(message.getDate());
         }
         return comp;
     }

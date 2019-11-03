@@ -7,12 +7,12 @@ public class MessageFilterBuilder {
     private String text;
     private Date date;
 
-    public MessageFilterBuilder()
+    /**public MessageFilterBuilder()
     {
-        title = new String("");
-        author = new String("");
-        text = new String("");
-    }
+        title;
+        author = "b";
+        text = "c";
+    }**/
 
     public MessageFilterBuilder withTitle (final String title) {
         this.title = title;
