@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +19,7 @@ public class MessageFilter {
         pattern.setText(text);
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         pattern.setDate(date);
     }
 

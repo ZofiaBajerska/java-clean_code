@@ -1,5 +1,9 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Application {
@@ -57,7 +61,7 @@ public class Application {
         newMsg.setTitle(scanner.nextLine());
         System.out.print("Text: ");
         newMsg.setText(scanner.nextLine());
-        newMsg.setDate(new Date(System.currentTimeMillis()));
+        newMsg.setDate(LocalDateTime.now());
         if (newMsg.isComplete()) {
             storage.add(newMsg);
         }
@@ -99,10 +103,11 @@ public class Application {
             System.out.print("Text: ");
             mfb.withText(scanner.nextLine());
         }
-        /**if(filterSet.contains("d") || filterSet.contains("D")) {
-         System.out.print("Date: ");
-         mfb.withDate(scanner.nextLine());
-         }**/
+        if (filterSet.contains("d") || filterSet.contains("D")) {
+            System.out.print("Date: ");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            mfb.withDate(LocalDateTime.parse(scanner.nextLine(), dtf));
+        }
 
         return mfb.build();
     }

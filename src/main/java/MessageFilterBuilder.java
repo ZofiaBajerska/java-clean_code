@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class MessageFilterBuilder {
@@ -5,7 +6,7 @@ public class MessageFilterBuilder {
     private String title;
     private String author;
     private String text;
-    private Date date;
+    private LocalDateTime date;
 
     /**public MessageFilterBuilder()
     {
@@ -29,7 +30,7 @@ public class MessageFilterBuilder {
         return this;
     }
 
-    public MessageFilterBuilder withDate (final Date date) {
+    public MessageFilterBuilder withDate (final LocalDateTime date) {
         this.date = date;
         return this;
     }
@@ -38,7 +39,7 @@ public class MessageFilterBuilder {
         filter.setTitle(title);
         filter.setAuthor(author);
         filter.setText(text);
-//        filter.setDate(date);
+        filter.setDate(date);
         return filter;
     }
 }
