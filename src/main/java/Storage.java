@@ -3,7 +3,7 @@ import java.util.List;
 
 public final class Storage {
     private static final Storage INSTANCE = new Storage();
-    private List<Message> container = new ArrayList<Message>();
+    private List<Message> container = new ArrayList<>();
 
     private Storage() {}
     public static Storage getInstance() {

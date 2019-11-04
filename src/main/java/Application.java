@@ -1,24 +1,20 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Application {
 
-    Scanner scanner = new Scanner(System.in);
-
-    Storage storage = Storage.getInstance();
+    private StorageFacade systemFacade;
+    private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Application app = new Application();
         app.run();
     }
 
-    public void run() {
+    private void run() {
         int cmd;
+        systemFacade = StorageFacade.getInstance();
         do {
             System.out.println("1 add");
             System.out.println("2 print");
@@ -54,90 +50,93 @@ public class Application {
     }
 
     private void addMessage() {
-        Message newMsg = new Message();
+        String author, title, text;
         System.out.print("Author: ");
-        newMsg.setAuthor(scanner.nextLine());
+        author = scanner.nextLine();
         System.out.print("Title: ");
-        newMsg.setTitle(scanner.nextLine());
+        title = scanner.nextLine();
         System.out.print("Text: ");
-        newMsg.setText(scanner.nextLine());
-        newMsg.setDate(LocalDateTime.now());
-        if (newMsg.isComplete()) {
-            storage.add(newMsg);
+        text = scanner.nextLine();
+
+        if (systemFacade.add(author, title, text, LocalDateTime.now())) {
+            System.out.println("Message added!");
         }
         else {
             System.out.println("Please try again!");
         }
+
     }
 
     private void showMessages() {
         System.out.print("Do You want simple or full format? (S/F): ");
         String format = scanner.nextLine();
         if ((format.contains("s")) || (format.contains("S"))) {
-            storage.getAll().stream().forEach(m -> {
-                System.out.println(new SimpleMessageDecorator(m).getRecord()); });
+            systemFacade.showAll(false, System.out);
         }
         else if ((format.contains("f")) || (format.contains("F"))) {
-            storage.getAll().stream().forEach(m -> {
-                System.out.println(new FullMessageDecorator(m).getRecord()); });
+            systemFacade.showAll(true, System.out);
         }
         else {
             System.out.println("Please try again!");
         }
     }
 
-    private MessageFilter createUserFilter() {
-        MessageFilterBuilder mfb = new MessageFilterBuilder();
+    private void setUserFilter() {
         System.out.println("You can choose by any of following (i.e. AE):\n"
                 + "Author(A)\n" + "Title(T)\n" + "Text(E)\n" + "Date(D)");
         String filterSet = scanner.nextLine();
+        String author = null;
+        String title = null;
+        String text = null;
+        LocalDateTime stamp = null;
         if(filterSet.contains("a") || filterSet.contains("A")) {
             System.out.print("Author: ");
-            mfb.withAuthor(scanner.nextLine());
+            author = scanner.nextLine();
         }
         if(filterSet.contains("t") || filterSet.contains("T")) {
             System.out.print("Title: ");
-            mfb.withTitle(scanner.nextLine());
+            title = scanner.nextLine();
         }
         if(filterSet.contains("e") || filterSet.contains("E")) {
             System.out.print("Text: ");
-            mfb.withText(scanner.nextLine());
+            text = scanner.nextLine();
         }
         if (filterSet.contains("d") || filterSet.contains("D")) {
             System.out.print("Date: ");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            mfb.withDate(LocalDateTime.parse(scanner.nextLine(), dtf));
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+            stamp = LocalDateTime.parse(scanner.nextLine(), dtf);
         }
-
-        return mfb.build();
+        systemFacade.setFilter(author, title, text, stamp);
     }
 
     private void removeMessages() {
-        MessageFilter mf = createUserFilter();
+        setUserFilter();
 
         System.out.println("These are messages to be removed:");
-        List<Message> toBeDeleted = mf.process(storage.getAll());
-        toBeDeleted.forEach(m -> {System.out.println(new SimpleMessageDecorator(m).getRecord()); });
+        systemFacade.showSelected(false, System.out);
+
         System.out.println("Do You really want to remove them? (Y/N)");
         String decision = scanner.nextLine();
         if (decision.contains("y") || decision.contains("Y")){
-            toBeDeleted.stream().forEach(storage::remove);
-            System.out.println("Message(s) removed with success");
+            if (systemFacade.removedSelected()) {
+                System.out.println("Message(s) removed with success");
+            }
+            else {
+                System.out.println("Something went wrong!");
+            }
         }
     }
 
     private void filterMessages() {
-        MessageFilter mf = createUserFilter();
+        setUserFilter();
 
         System.out.print("Do You want simple or full format? (S/F): ");
         String format = scanner.nextLine();
         if ((format.contains("s")) || (format.contains("S"))) {
-            mf.process(storage.getAll()).stream().forEach(m -> {
-                System.out.println(new SimpleMessageDecorator(m).getRecord()); });
+            systemFacade.showSelected(false, System.out);
         }
         else if ((format.contains("f")) || (format.contains("F"))) {
-            mf.process(storage.getAll()).stream().forEach(m -> {
-                System.out.println(new FullMessageDecorator(m).getRecord()); });
+            systemFacade.showSelected(true, System.out);
         }
         else {
             System.out.println("Please try again!");

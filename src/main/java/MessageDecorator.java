@@ -1,5 +1,5 @@
 public interface MessageDecorator {
 
-    public String getRecord();
+    String getRecord();
 
 }
