@@ -2,30 +2,30 @@ package filter;
 
 import java.time.LocalDateTime;
 
-public class FilterBuilder {
-    private ByAnyPredicate filter = new ByAnyPredicate();
+public class ComplexFilterBuilder {
+    private ComplexPredicate filter = new ComplexPredicate();
 
-    public FilterBuilder withTitle (final String title) {
+    public ComplexFilterBuilder withTitle (final String title) {
         filter.addPredicate(new ByTitlePredicate(title));
         return this;
     }
 
-    public FilterBuilder withAuthor (final String author) {
+    public ComplexFilterBuilder withAuthor (final String author) {
         filter.addPredicate(new ByAuthorPredicate(author));
         return this;
     }
 
-    public FilterBuilder withText (final String text) {
+    public ComplexFilterBuilder withText (final String text) {
         filter.addPredicate(new ByTextPredicate(text));
         return this;
     }
 
-    public FilterBuilder withDate (final LocalDateTime date) {
+    public ComplexFilterBuilder withDate (final LocalDateTime date) {
         filter.addPredicate(new ByDatePredicate(date));
         return this;
     }
 
-    public ByAnyPredicate build(){
+    public ComplexPredicate build(){
         return filter;
     }
 }

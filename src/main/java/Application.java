@@ -1,3 +1,5 @@
+import facade.StorageFacade;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -16,11 +18,7 @@ public class Application {
         int cmd;
         systemFacade = StorageFacade.getInstance();
         do {
-            System.out.println("1 add");
-            System.out.println("2 print");
-            System.out.println("3 filter");
-            System.out.println("4 remove");
-            System.out.println("5 quit");
+            systemFacade.printMenu();
 
             cmd = scanner.nextInt();
             scanner.skip("\n");

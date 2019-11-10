@@ -1,11 +1,15 @@
 package action;
 
-import filter.ByAnyPredicate;
+import filter.ComplexPredicate;
+import model.Message;
 import storage.Storage;
 
+import java.util.function.Predicate;
+
 public class Remover {
-    private ByAnyPredicate predicate;
-    public Remover(ByAnyPredicate predicate){
+    private Predicate<Message> predicate;
+
+    public Remover(Predicate<Message> predicate){
         this.predicate = predicate;
     }
 
