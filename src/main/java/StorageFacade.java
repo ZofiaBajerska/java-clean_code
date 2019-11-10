@@ -1,6 +1,9 @@
 import decorator.FullPrinter;
 import decorator.SimplePrinter;
+import filter.ByAnyPredicate;
+import filter.FilterBuilder;
 import model.Message;
+import storage.Storage;
 
 import java.io.PrintStream;
 import java.time.LocalDateTime;
@@ -10,7 +13,7 @@ public class StorageFacade {
 
     private static final StorageFacade INSTANCE = new StorageFacade();
     private Storage storage = Storage.getInstance();
-    private MessageFilter filter;
+    private ByAnyPredicate filter;
 
     private StorageFacade(){}
     public static StorageFacade getInstance() {
@@ -53,7 +56,7 @@ public class StorageFacade {
     }
 
     public void setFilter(String author, String title, String text, LocalDateTime stamp) {
-        MessageFilterBuilder mfb = new MessageFilterBuilder();
+        FilterBuilder mfb = new FilterBuilder();
         mfb.withAuthor(author);
         mfb.withTitle(title);
         mfb.withText(text);

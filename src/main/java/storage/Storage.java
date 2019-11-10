@@ -1,3 +1,5 @@
+package storage;
+
 import model.Message;
 
 import java.util.ArrayList;
@@ -5,7 +7,7 @@ import java.util.List;
 
 public final class Storage {
     private static final Storage INSTANCE = new Storage();
-    private List<Message> container = new ArrayList<>();
+    private List<Message> messages = new ArrayList<>();
 
     private Storage() {}
     public static Storage getInstance() {
@@ -13,18 +15,13 @@ public final class Storage {
     }
 
     public void add(Message msg) {
-        if(msg ==null){
+        if(msg == null){
             throw new NullPointerException();
         }
-        container.add(msg);
+        messages.add(msg);
     }
 
-    public boolean remove(Message msg) {
-        return container.remove(msg);
-    }
-
-    public List<Message> getAll() {
-        return List.copyOf(container);
-
+    public List<Message> getMessages() {
+        return messages;
     }
 }
