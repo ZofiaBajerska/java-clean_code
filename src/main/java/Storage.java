@@ -1,3 +1,5 @@
+import model.Message;
+
 import java.util.ArrayList;
 import java.util.List;
 

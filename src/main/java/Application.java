@@ -59,7 +59,7 @@ public class Application {
         text = scanner.nextLine();
 
         if (systemFacade.add(author, title, text, LocalDateTime.now())) {
-            System.out.println("Message added!");
+            System.out.println("model.Message added!");
         }
         else {
             System.out.println("Please try again!");
@@ -103,8 +103,8 @@ public class Application {
         }
         if (filterSet.contains("d") || filterSet.contains("D")) {
             System.out.print("Date: ");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-            stamp = LocalDateTime.parse(scanner.nextLine(), dtf);
+            //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            stamp = LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         }
         systemFacade.setFilter(author, title, text, stamp);
     }
@@ -119,7 +119,7 @@ public class Application {
         String decision = scanner.nextLine();
         if (decision.contains("y") || decision.contains("Y")){
             if (systemFacade.removedSelected()) {
-                System.out.println("Message(s) removed with success");
+                System.out.println("model.Message(s) removed with success");
             }
             else {
                 System.out.println("Something went wrong!");

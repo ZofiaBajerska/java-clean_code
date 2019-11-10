@@ -1,3 +1,5 @@
+import model.Message;
+
 public class SimpleMessageDecorator implements MessageDecorator {
 
     private Message message;

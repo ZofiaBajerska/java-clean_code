@@ -1,4 +1,5 @@
-import java.time.LocalDateTime;
+import model.Message;
+
 import java.time.format.DateTimeFormatter;
 
 public class FullMessageDecorator implements MessageDecorator {
@@ -12,7 +13,7 @@ public class FullMessageDecorator implements MessageDecorator {
 
     @Override
     public String getRecord() {
-        String line = "Date: " + message.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE)
+        String line = "Date: " + message.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
                 + "\nAuthor: " + message.getAuthor()
                 + "\nTitle: " + message.getTitle()
                 + "\nText: " + message.getText()

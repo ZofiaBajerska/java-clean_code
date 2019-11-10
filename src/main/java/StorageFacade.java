@@ -1,3 +1,5 @@
+import model.Message;
+
 import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.util.List;

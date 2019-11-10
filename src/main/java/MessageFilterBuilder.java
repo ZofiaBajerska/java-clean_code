@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class MessageFilterBuilder {
 
@@ -7,13 +6,6 @@ public class MessageFilterBuilder {
     private String author;
     private String text;
     private LocalDateTime date;
-
-    /**public MessageFilterBuilder()
-    {
-        title;
-        author = "b";
-        text = "c";
-    }**/
 
     public MessageFilterBuilder withTitle (final String title) {
         this.title = title;
