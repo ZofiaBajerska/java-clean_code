@@ -20,14 +20,14 @@ public class StorageFacade {
         actions.put(1, new ActionAdd(storage, scanner));
         actions.put(2, new ActionPrint(storage, scanner));
         CompositeAction composite = new CompositeAction("Print some messages");
-        Predicate<Message> predicate;
-        composite.addAction(new ActionBuildFilter(storage, scanner, predicate));
-        composite.addAction(new ActionPrint(storage, scanner, predicate));
+        CommonDataCarrier common = new CommonDataCarrier();
+        composite.addAction(new ActionBuildFilter(storage, scanner, common));
+        composite.addAction(new ActionPrint(storage, scanner, common));
         actions.put(3, composite);
         composite = new CompositeAction("Remove messages");
-        composite.addAction(new ActionBuildFilter(storage, scanner, predicate));
-        composite.addAction(new ActionPrint(storage, scanner, predicate));
-        composite.addAction(new ActionRemove(storage, scanner, predicate));
+        composite.addAction(new ActionBuildFilter(storage, scanner, common));
+        composite.addAction(new ActionPrint(storage, scanner, common));
+        composite.addAction(new ActionRemove(storage, scanner, common));
         actions.put(4, composite);
         actions.put(5, new ActionQuit());
     }

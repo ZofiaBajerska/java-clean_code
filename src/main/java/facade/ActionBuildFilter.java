@@ -13,12 +13,12 @@ public class ActionBuildFilter implements UserAction {
 
     private Storage storage;
     private Scanner scanner;
-    private Predicate<Message> predicate;
+    private CommonDataCarrier common;
 
-    public ActionBuildFilter(Storage storage, Scanner scanner, Predicate<Message> predicate) {
+    public ActionBuildFilter(Storage storage, Scanner scanner, CommonDataCarrier common) {
         this.storage = storage;
         this.scanner = scanner;
-        this.predicate = predicate;
+        this.common = common;
     }
 
     @Override
@@ -49,6 +49,6 @@ public class ActionBuildFilter implements UserAction {
             //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             builder.withDate(LocalDateTime.parse(scanner.nextLine(), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         }
-        predicate = builder.build();
+        common.setPredicate(builder.build());
     }
 }

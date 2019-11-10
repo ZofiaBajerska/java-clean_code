@@ -10,12 +10,12 @@ import java.util.function.Predicate;
 public class ActionRemove implements UserAction {
     private Storage storage;
     private Scanner scanner;
-    private Predicate<Message> predicate;
+    private CommonDataCarrier common;
 
-    public ActionRemove(Storage storage, Scanner scanner, Predicate<Message> predicate) {
+    public ActionRemove(Storage storage, Scanner scanner, CommonDataCarrier common) {
         this.storage = storage;
         this.scanner = scanner;
-        this.predicate = predicate;
+        this.common = common;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ActionRemove implements UserAction {
         System.out.println("Do You really want to remove? (Y/N)");
         String decision = scanner.nextLine();
         if (decision.contains("y") || decision.contains("Y")){
-            Remover remover = new Remover(predicate);
+            Remover remover = new Remover(common.getPredicate());
             remover.execute(storage);
             System.out.println("Messages removed!");
         }
