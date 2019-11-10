@@ -42,4 +42,13 @@ public class StorageFacade {
         }
     }
 
+    public boolean execute(){
+        int cmd = scanner.nextInt();
+        scanner.skip("\n");
+
+        if (actions.containsKey(cmd)){
+            actions.get(cmd).execute();
+        }
+        return true;
+    }
 }

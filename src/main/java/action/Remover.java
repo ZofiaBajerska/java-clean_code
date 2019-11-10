@@ -1,6 +1,5 @@
 package action;
 
-import filter.ComplexPredicate;
 import model.Message;
 import storage.Storage;
 
