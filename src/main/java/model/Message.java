@@ -3,7 +3,7 @@ package model;
 import org.jetbrains.annotations.NotNull;
 import java.time.LocalDateTime;
 
-public class Message implements Comparable {
+public class Message {
 
     private String title;
     private String author;
@@ -41,7 +41,7 @@ public class Message implements Comparable {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-
+/*
     public boolean isComplete() {
         if ((author == null) || (title == null) || (text == null) || (date == null)) {
             return false;
@@ -52,31 +52,5 @@ public class Message implements Comparable {
         return true;
     }
 
-    @Override
-    public int compareTo(@NotNull Object o) {
-        Message message = (Message)o;
-        int comp = 0;
-        if(message.getTitle() != null) {
-            comp = title.compareTo(message.getTitle());
-            if (comp != 0) {
-                return comp;
-            }
-        }
-        if(message.getAuthor() != null) {
-            comp = author.compareTo(message.getAuthor());
-            if (comp != 0) {
-                return comp;
-            }
-        }
-        if (message.getText() != null) {
-            comp = text.compareTo(message.getText());
-            if (comp != 0) {
-                return comp;
-            }
-        }
-        if (message.getDate() != null) {
-            comp = date.compareTo(message.getDate());
-        }
-        return comp;
-    }
+ */
 }

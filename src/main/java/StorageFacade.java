@@ -1,3 +1,5 @@
+import decorator.FullPrinter;
+import decorator.SimplePrinter;
 import model.Message;
 
 import java.io.PrintStream;
@@ -31,22 +33,22 @@ public class StorageFacade {
     public void showAll(boolean fullInfo, PrintStream out) {
         if (fullInfo) {
             storage.getAll().stream().forEach(m -> {
-                out.println(new FullMessageDecorator(m).getRecord()); });
+                out.println(new FullPrinter(m).getRecord()); });
         }
         else {
             storage.getAll().stream().forEach(m -> {
-                out.println(new SimpleMessageDecorator(m).getRecord()); });
+                out.println(new SimplePrinter(m).getRecord()); });
         }
     }
 
     public void showSelected(boolean fullInfo, PrintStream out) {
         if (fullInfo) {
             List<Message> selected = filter.process(storage.getAll());
-            selected.forEach(m -> { out.println(new FullMessageDecorator(m).getRecord()); });
+            selected.forEach(m -> { out.println(new FullPrinter(m).getRecord()); });
         }
         else {
             List<Message> selected = filter.process(storage.getAll());
-            selected.forEach(m -> { out.println(new SimpleMessageDecorator(m).getRecord()); });
+            selected.forEach(m -> { out.println(new SimplePrinter(m).getRecord()); });
         }
     }
 
