@@ -1,10 +1,6 @@
 package model;
 
-import filter.ComplexPredicate;
-import filter.ComplexPredicateBuilder;
 import org.junit.Test;
-import org.mockito.Mockito;
-
 import java.util.Calendar;
 import java.util.Date;
 

@@ -1,10 +1,7 @@
 package input;
 
-import model.Message;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

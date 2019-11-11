@@ -4,7 +4,6 @@ import model.Message;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
