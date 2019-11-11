@@ -1,13 +1,14 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Message {
 
     private String title;
     private String author;
     private String text;
-    private LocalDateTime date;
+    private Date date;
 
     public String getTitle() {
         return title;
@@ -33,11 +34,11 @@ public class Message {
         this.text = text;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

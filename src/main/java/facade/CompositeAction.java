@@ -17,10 +17,13 @@ public class CompositeAction implements UserAction {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         for (UserAction action : actions) {
-            action.execute();
+            if (!action.execute()) {
+                return false;
+            }
         }
+        return true;
     }
 
     public void addAction(UserAction action) {

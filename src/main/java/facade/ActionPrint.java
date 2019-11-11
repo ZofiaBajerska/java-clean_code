@@ -3,11 +3,9 @@ package facade;
 import decorator.FullPrinter;
 import decorator.SimplePrinter;
 import filter.AlwaysTruePredicate;
-import model.Message;
 import storage.Storage;
 
 import java.util.Scanner;
-import java.util.function.Predicate;
 
 public class ActionPrint implements UserAction {
     private Storage storage;
@@ -33,7 +31,7 @@ public class ActionPrint implements UserAction {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         System.out.print("Do You want simple or full format? (S/F): ");
         String format = scanner.nextLine();
         if ((format.contains("s")) || (format.contains("S"))) {
@@ -45,5 +43,6 @@ public class ActionPrint implements UserAction {
         else {
             System.out.println("Please try again!");
         }
+        return true;
     }
 }

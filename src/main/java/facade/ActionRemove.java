@@ -1,11 +1,9 @@
 package facade;
 
 import action.Remover;
-import model.Message;
 import storage.Storage;
 
 import java.util.Scanner;
-import java.util.function.Predicate;
 
 public class ActionRemove implements UserAction {
     private Storage storage;
@@ -24,7 +22,7 @@ public class ActionRemove implements UserAction {
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         System.out.println("Do You really want to remove? (Y/N)");
         String decision = scanner.nextLine();
         if (decision.contains("y") || decision.contains("Y")){
@@ -35,5 +33,6 @@ public class ActionRemove implements UserAction {
         else{
             System.out.println("Messages not removed!");
         }
+        return true;
     }
 }

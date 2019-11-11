@@ -1,6 +1,7 @@
 package filter;
 
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ComplexFilterBuilder {
     private ComplexPredicate filter = new ComplexPredicate();
@@ -20,7 +21,7 @@ public class ComplexFilterBuilder {
         return this;
     }
 
-    public ComplexFilterBuilder withDate (final LocalDateTime date) {
+    public ComplexFilterBuilder withDate (final Date date) {
         filter.addPredicate(new ByDatePredicate(date));
         return this;
     }

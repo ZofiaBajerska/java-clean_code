@@ -1,6 +1,8 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class MessageBuilder {
     private Message message = new Message();
@@ -20,7 +22,7 @@ public class MessageBuilder {
         return this;
     }
 
-    public MessageBuilder withDate (final LocalDateTime date) {
+    public MessageBuilder withDate (final Date date) {
         message.setDate(date);
         return this;
     }

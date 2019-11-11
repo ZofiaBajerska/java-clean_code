@@ -1,11 +1,8 @@
 import facade.StorageFacade;
 
-import java.util.Scanner;
-
 public class Application {
 
     private StorageFacade systemFacade;
-    private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Application app = new Application();

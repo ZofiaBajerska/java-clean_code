@@ -1,12 +1,13 @@
 package facade;
 
-import model.Message;
+import input.DateTimeValidator;
 import storage.Storage;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.function.Predicate;
+import java.util.logging.Logger;
 
 public class StorageFacade {
 
@@ -14,6 +15,7 @@ public class StorageFacade {
 
     private Storage storage = Storage.getInstance();
     private Scanner scanner = new Scanner(System.in);
+    private final Logger log = Logger.getLogger(DateTimeValidator.class.getName());
     private Map<Integer, UserAction> actions = new HashMap<>();
 
     private StorageFacade() {
@@ -29,7 +31,7 @@ public class StorageFacade {
         composite.addAction(new ActionPrint(storage, scanner, common));
         composite.addAction(new ActionRemove(storage, scanner, common));
         actions.put(4, composite);
-        actions.put(5, new ActionQuit());
+        actions.put(5, new ActionQuit(scanner));
     }
 
     public static StorageFacade getInstance() {
@@ -43,11 +45,21 @@ public class StorageFacade {
     }
 
     public boolean execute(){
-        int cmd = scanner.nextInt();
-        scanner.skip("\n");
+        int cmd;
+
+        try {
+            cmd = scanner.nextInt();
+            scanner.skip("\n");
+        } catch (InputMismatchException e){
+            log.warning("Wrong operation");
+            log.warning(e.getMessage());
+            return true;
+        }
 
         if (actions.containsKey(cmd)){
-            actions.get(cmd).execute();
+            if (!actions.get(cmd).execute()) {
+                return false;
+            }
         }
         return true;
     }

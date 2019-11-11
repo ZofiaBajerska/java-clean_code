@@ -2,18 +2,18 @@ package filter;
 
 import model.Message;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.function.Predicate;
 
 public class ByDatePredicate implements Predicate<Message> {
-    private LocalDateTime date;
+    private Date date;
 
-    public ByDatePredicate(LocalDateTime date){
+    public ByDatePredicate(Date date){
         this.date = date;
     }
 
     @Override
     public boolean test(Message message) {
-        return this.date.equals(message.getDate());
+        return message.getDate().before(this.date);
     }
 }
