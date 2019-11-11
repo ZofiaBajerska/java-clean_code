@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ComplexPredicate implements Predicate<Message> {
-    List<Predicate> predicates = new ArrayList<>();
+    private List<Predicate> predicates = new ArrayList<>();
 
     public void addPredicate(Predicate<Message> predicate) {
         if (predicate != null) {

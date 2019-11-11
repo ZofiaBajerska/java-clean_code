@@ -15,8 +15,4 @@ public class Remover {
     public boolean execute(Storage storage){
         return storage.getMessages().removeIf(predicate);
     }
-
-    public boolean execute(){
-        return Storage.getInstance().getMessages().removeIf(predicate);
-    }
 }

@@ -1,27 +1,26 @@
 package filter;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ComplexFilterBuilder {
+public class ComplexPredicateBuilder {
     private ComplexPredicate filter = new ComplexPredicate();
 
-    public ComplexFilterBuilder withTitle (final String title) {
+    public ComplexPredicateBuilder withTitle (final String title) {
         filter.addPredicate(new ByTitlePredicate(title));
         return this;
     }
 
-    public ComplexFilterBuilder withAuthor (final String author) {
+    public ComplexPredicateBuilder withAuthor (final String author) {
         filter.addPredicate(new ByAuthorPredicate(author));
         return this;
     }
 
-    public ComplexFilterBuilder withText (final String text) {
+    public ComplexPredicateBuilder withText (final String text) {
         filter.addPredicate(new ByTextPredicate(text));
         return this;
     }
 
-    public ComplexFilterBuilder withDate (final Date date) {
+    public ComplexPredicateBuilder withDate (final Date date) {
         filter.addPredicate(new ByDatePredicate(date));
         return this;
     }

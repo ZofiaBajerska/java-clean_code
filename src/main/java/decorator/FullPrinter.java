@@ -14,8 +14,7 @@ public class FullPrinter implements Consumer<Message> {
         String out = "Date: " + simpleDateFormat.format(message.getDate())
                 + "\nAuthor: " + message.getAuthor()
                 + "\nTitle: " + message.getTitle()
-                + "\nText: " + message.getText()
-                + "\n";
+                + "\nText: " + message.getText();
         System.out.println(out);
     }
 }

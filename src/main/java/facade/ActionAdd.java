@@ -1,10 +1,10 @@
 package facade;
 
+import input.InputReader;
+import input.StringValidator;
 import model.MessageBuilder;
 import storage.Storage;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -22,23 +22,14 @@ public class ActionAdd implements UserAction {
         return "Add message";
     }
 
-    public String getValidInput(String tag){
-        String input;
-        do {
-            System.out.print(tag);
-            input = scanner.nextLine();
-        } while (input.isEmpty());
-
-        return input;
-    }
-
     @Override
     public boolean execute() {
         MessageBuilder builder = new MessageBuilder();
 
-        builder.withAuthor(getValidInput("Author: "));
-        builder.withTitle(getValidInput("Title: "));
-        builder.withText(getValidInput("Text: "));
+        InputReader<String> reader = new InputReader<>(new StringValidator());
+        builder.withAuthor(reader.getValue("Author: ", scanner));
+        builder.withTitle(reader.getValue("Title: ", scanner));
+        builder.withText(reader.getValue("Text: ", scanner));
         builder.withDate(new Date());
 
         storage.add(builder.build());

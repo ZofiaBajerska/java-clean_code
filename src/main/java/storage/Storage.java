@@ -5,7 +5,7 @@ import model.Message;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Storage {
+public class Storage {
     private static final Storage INSTANCE = new Storage();
     private List<Message> messages = new ArrayList<>();
 

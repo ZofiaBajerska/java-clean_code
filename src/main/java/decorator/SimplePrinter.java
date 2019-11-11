@@ -9,8 +9,7 @@ public class SimplePrinter implements Consumer<Message> {
     @Override
     public void accept(Message message) {
         String out = "Author: " + message.getAuthor()
-                + "\nTitle: " + message.getTitle()
-                + "\n";
+                + "\nTitle: " + message.getTitle();
         System.out.println(out);
     }
 }

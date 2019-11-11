@@ -1,6 +1,6 @@
 package facade;
 
-import filter.ComplexFilterBuilder;
+import filter.ComplexPredicateBuilder;
 import input.DateTimeValidator;
 import input.InputReader;
 import input.StringValidator;
@@ -23,7 +23,7 @@ public class ActionBuildFilter implements UserAction {
 
     @Override
     public String getInfo() {
-        return null;
+        return "Build filter";
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ActionBuildFilter implements UserAction {
         System.out.println("You can choose by any of following (i.e. AE):\n"
                 + "Author(A)\n" + "Title(T)\n" + "Text(E)\n" + "Date(D)");
         String filterSet = scanner.nextLine();
-        ComplexFilterBuilder builder = new ComplexFilterBuilder();
+        ComplexPredicateBuilder builder = new ComplexPredicateBuilder();
         if(filterSet.contains("a") || filterSet.contains("A")) {
             InputReader<String> reader = new InputReader<>(new StringValidator());
             builder.withAuthor(reader.getValue("Author: ", scanner));
